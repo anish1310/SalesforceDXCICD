@@ -1,9 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-
 name: SIT Branch Workflow
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
     branches: [SIT]
@@ -14,10 +10,9 @@ env:
   GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
   GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
   SF_ORG__SIT__AUTH_URL: ${{ secrets.SF_ORG__SIT__AUTH_URL }}
-  SF_ORG__UAT__AUTH_URL: ${{ secrets.SF_ORG__UAT__AUTH_URL }}
 
 jobs:
-  Deploy_To_SIT:
+  Merge_to_SIT:
     runs-on: ubuntu-latest
     container:
       image: salesforce/salesforcedx:latest-full
@@ -25,17 +20,12 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Run Deployment against SIT
-        run: sfdx deploy:source --sourcepath force-app/main/default --testlevel NoTestRun --targetalias SIT
+      - name: Populate auth file with SFDX_URL secret
+        shell: bash
+        run: echo ${{ secrets.SF_ORG__SIT__AUTH_URL}} > ./SFDX_URL_STORE.txt
 
-  Validate_Against_UAT:
-    needs: Deploy_To_SIT
-    runs-on: ubuntu-latest
-    container:
-      image: salesforce/salesforcedx:latest-full
-      options: --user 0:0
-    steps:
-      - uses: actions/checkout@v1
+      - name: Authenticate against dev hub
+        run : sfdx force:auth:sfdxurl:store --sfdxurlfile=./SFDX_URL_STORE.txt --setalias=DevHub --setdefaultdevhubusername
 
-      - name: Run Validation against UAT
-        run: sfdx deploy:source --sourcepath force-app/main/default --checkonly --testlevel NoTestRun --targetalias UAT
+      - name: Run Validation against SIT
+        run: sfdx force:source:deploy --sourcepath force-app/main/default --testlevel NoTestRun --targetusername DevHub

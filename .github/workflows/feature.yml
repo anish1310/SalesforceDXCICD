@@ -21,6 +21,14 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Get Current Git Id
+        run: |
+          echo $GITHUB_SHA
+          sha_pre=$(git rev-parse HEAD~1)
+          echo $sha_pre
+          sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
+          echo $sha_diff
+
       - name: Populate auth file with SFDX_URL secret
         shell: bash
         run: echo ${{ secrets.SF_ORG__SIT__AUTH_URL}} > ./SFDX_URL_STORE.txt

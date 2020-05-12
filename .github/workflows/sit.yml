@@ -1,4 +1,4 @@
-name: Feature Branch Workflow
+name: SIT Branch Workflow
 
 on:
   push:
@@ -12,7 +12,7 @@ env:
   SF_ORG__SIT__AUTH_URL: ${{ secrets.SF_ORG__SIT__AUTH_URL }}
 
 jobs:
-  Validate_Against_SIT:
+  Merge_to_SIT:
     runs-on: ubuntu-latest
     container:
       image: salesforce/salesforcedx:latest-full

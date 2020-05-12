@@ -21,5 +21,12 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Populate auth file with SFDX_URL secret
+        shell: bash
+        run: echo ${{ secrets.SF_ORG__SIT__AUTH_URL}} > ./SFDX_URL_STORE.txt
+
+      - name: Authenticate against dev hub
+        run : sfdx force:auth:sfdxurl:store --sfdxurlfile=./SFDX_URL_STORE.txt --setalias=DevHub --setdefaultdevhubusername
+
       - name: Run Validation against SIT
-        run: sfdx force:source:deploy --sourcepath force-app/main/default --checkonly --testlevel NoTestRun --targetusername JenkinsSIT
+        run: sfdx force:source:deploy --sourcepath force-app/main/default --checkonly --testlevel NoTestRun --targetusername DevHub

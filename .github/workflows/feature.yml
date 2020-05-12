@@ -23,8 +23,11 @@ jobs:
 
       - name: Get Current Git Id
         run: |
-          sha_new=$(git show HEAD~1 --pretty=format:"%H")
-          echo $sha_new
+          echo $GITHUB_SHA
+          sha_pre=$(git rev-parse HEAD~1)
+          echo $sha_pre
+          sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
+          echo $sha_diff
 
       - name: Populate auth file with SFDX_URL secret
         shell: bash

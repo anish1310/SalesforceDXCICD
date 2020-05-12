@@ -1,3 +1,3 @@
 public class AbandonedOrderDeleteBatch {
-//This is new comment
+This is new comment
 }

@@ -3,6 +3,6 @@ public class AbandonedOrderDeleteBatch {
 //new comment
 //again comment added
 //Changes to check git diff
-//This is new commen  t   some changes
+//This is new comment some changes
 //ncjvnkkshgj  hgj
 }

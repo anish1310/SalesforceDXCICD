@@ -1,9 +1,4 @@
 <project name="plpcco" default="ret" basedir="." xmlns:sf="antlib:com.salesforce">
-	<taskdef resource="net/sf/antcontrib/antlib.xml">
-		<classpath>
-			<pathelement location="lib/ant-contrib-1.0b3.jar"/>
-		</classpath>
-	</taskdef>
 	<property environment="env"/>
 	<macrodef name="gitDiff">
 		<sequential>

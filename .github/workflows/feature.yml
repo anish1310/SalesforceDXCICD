@@ -19,7 +19,7 @@ jobs:
       image: salesforce/salesforcedx:latest-full
       options: --user 0:0
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
 
       - name: Get Current Git Id
         run: |

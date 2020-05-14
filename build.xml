@@ -5,8 +5,8 @@
 				<arg value="diff"/>
 				<arg value="--pretty=format:" />
 				<arg value="--name-only" />
-				<arg value="${{github.sha}}" />
-				<arg value="${{github.sha_pre}}" />
+				<arg value="${github.sha}" />
+				<arg value="${github.sha_pre}" />
 			</exec>
 			<echo>${git.diff}</echo>
 		</sequential>
@@ -15,7 +15,7 @@
 		<delete dir="deploy-sf"/>
 		<mkdir dir="deploy-sf"/>
 		<gitDiff/>
-		<for list="${{git.diff}}" param="currentDiff" delimiter="${line.separator}">
+		<for list="${git.diff}" param="currentDiff" delimiter="${line.separator}">
 			<sequential>
 				<if>
 					<and>

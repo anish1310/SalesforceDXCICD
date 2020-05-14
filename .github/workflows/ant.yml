@@ -2,7 +2,8 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-ant
 
 name: Java CI
-
+env:
+  Diff: sha_diff
 on:
   push:
     branches: [ feature/** ]
@@ -19,11 +20,7 @@ jobs:
         sha_pre=$(git log --pretty=format:"%H" --merges -n 1)
         echo "This is the previous commit" $sha_pre
         sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
-        echo $sha_diff
-        echo $GITHUB_REF
-      env:
-        GITHUB_SHA: ${{ github.GITHUB_SHA }}
-        Sha_pre: ${{ github.GITHUB_REF }}
+        echo $Diff
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

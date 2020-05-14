@@ -1,22 +1,10 @@
 <project name="plpcco" default="ret" basedir="." xmlns:sf="antlib:com.salesforce">
 	<property environment="env"/>
-	<macrodef name="gitDiff">
-		<sequential>
-			<exec executable="git" outputproperty="git.diff">
-				<arg value="diff"/>
-				<arg value="--pretty=format:" />
-				<arg value="--name-only" />
-				<arg value="${env.GITHUB_SHA}" />
-				<arg value="${env.GITHUB_REF}" />
-			</exec>
-			<echo>${git.diff}</echo>
-		</sequential>
-	</macrodef>
 	<target name="diffBuilderWithGitCommit">
 		<delete dir="deploy-sf"/>
 		<mkdir dir="deploy-sf"/>
 		<gitDiff/>
-		<for list="${git.diff}" param="currentDiff" delimiter="${line.separator}">
+		<for list="${sha_diff}" param="currentDiff" delimiter="${line.separator}">
 			<sequential>
 				<if>
 					<and>

@@ -1,6 +1,6 @@
 <project name="plpcco" default="ret" basedir="." xmlns:sf="antlib:com.salesforce">
-	<macrodef name="gitDiff">
 	<property environment="env"/>
+	<macrodef name="gitDiff">
 		<sequential>
 			<exec executable="git" outputproperty="git.diff">
 				<arg value="diff"/>

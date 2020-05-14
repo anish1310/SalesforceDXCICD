@@ -21,8 +21,8 @@ jobs:
         sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
         echo $sha_diff
       env:
-        GITHUB_SHA: ${{ <GITHUB_SHA> }}
-        Sha_pre: ${{ <sha_pre> }}
+        GITHUB_SHA: ${{ github.sha }}
+        Sha_pre: ${{ github.sha_pre }}
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

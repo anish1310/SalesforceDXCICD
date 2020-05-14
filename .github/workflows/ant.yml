@@ -19,9 +19,9 @@ jobs:
       with:
         java-version: 1.8
 
-    - name: Get Current Git Id
+    - name: Get Git Id
       run: |
-        echo "This is the current commit $GITHUB_SHA
+        echo "This is the current commit" $GITHUB_SHA
         sha_pre=$(git log --pretty=format:"%H" --merges -n 1)
         echo "This is the previous commit" $sha_pre
 

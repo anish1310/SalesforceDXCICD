@@ -6,8 +6,8 @@
 				<arg value="diff"/>
 				<arg value="--pretty=format:" />
 				<arg value="--name-only" />
-				<arg value="${env.GIT_COMMIT}" />
-				<arg value="${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}" />
+				<arg value="${env.GITHUB_SHA}" />
+				<arg value="${env.sha_pre}" />
 			</exec>
 			<echo>${git.diff}</echo>
 		</sequential>

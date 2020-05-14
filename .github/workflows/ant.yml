@@ -18,5 +18,14 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+
+    - name: Get Current Git Id
+      run: |
+        echo $GITHUB_SHA
+        sha_pre=$(git log --pretty=format:"%H" --merges -n 1)
+        echo "This is the previous commit" $sha_pre
+        sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
+        echo $sha_diff
+
     - name: Build with Ant
       run: ant -buildfile build.xml diffBuilderWithGitCommit

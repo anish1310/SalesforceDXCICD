@@ -3,7 +3,6 @@
 	<target name="diffBuilderWithGitCommit">
 		<delete dir="deploy-sf"/>
 		<mkdir dir="deploy-sf"/>
-		<gitDiff/>
 		<for list="${GIT_DIFF}" param="currentDiff" delimiter="${line.separator}">
 			<sequential>
 				<if>

@@ -4,7 +4,7 @@
 		<delete dir="deploy-sf"/>
 		<mkdir dir="deploy-sf"/>
 		<gitDiff/>
-		<for list="${sha_diff}" param="currentDiff" delimiter="${line.separator}">
+		<for list="${GIT_DIFF}" param="currentDiff" delimiter="${line.separator}">
 			<sequential>
 				<if>
 					<and>

@@ -5,8 +5,8 @@
 				<arg value="diff"/>
 				<arg value="--pretty=format:" />
 				<arg value="--name-only" />
-				<arg value="${env.GITHUB_SHA}" />
-				<arg value="${env.Sha_pre}" />
+				<arg value="${GITHUB_SHA}" />
+				<arg value="${Sha_pre}" />
 			</exec>
 			<echo>${git.diff}</echo>
 		</sequential>

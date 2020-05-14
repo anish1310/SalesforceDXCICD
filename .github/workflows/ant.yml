@@ -3,7 +3,7 @@
 
 name: Java CI
 env:
-  Diff: sha_diff
+  Diff: ${{sha_diff}}
 on:
   push:
     branches: [ feature/** ]

@@ -1,5 +1,5 @@
 <project name="plpcco" default="ret" basedir="." xmlns:sf="antlib:com.salesforce">
-	<property environment="env"/>
+	<property environment="github"/>
 	<macrodef name="gitDiff">
 		<sequential>
 			<exec executable="git" outputproperty="git.diff">
@@ -7,7 +7,7 @@
 				<arg value="--pretty=format:" />
 				<arg value="--name-only" />
 				<arg value="${env.GITHUB_SHA}" />
-				<arg value="${env.Sha_pre}" />
+				<arg value="${env.GITHUB_REF}" />
 			</exec>
 			<echo>${git.diff}</echo>
 		</sequential>

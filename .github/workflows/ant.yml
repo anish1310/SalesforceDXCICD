@@ -23,5 +23,4 @@ jobs:
       run: |
         mkdir Diff_Folder
         cd Diff_Folder
-        touch $Diff_Value
-        ls -la
+        cat $Diff_Value

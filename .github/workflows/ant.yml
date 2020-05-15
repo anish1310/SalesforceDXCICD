@@ -22,7 +22,7 @@ jobs:
         mkdir Diff_Folder
         touch Diff_Folder/.Difference.txt
         echo ${{ env.Diff_Value }} > ./Difference.txt
-        cat ./Difference.txt
+        cat Diff_Folder/.Difference.txt
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

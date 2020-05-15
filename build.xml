@@ -3,7 +3,7 @@
 	<target name="diffBuilderWithGitCommit">
 		<delete dir="deploy-sf"/>
 		<mkdir dir="deploy-sf"/>
-		<for list="${sha_diff}" param="currentDiff" delimiter="${line.separator}">
+		<for param="${./Diff.txt}" param="currentDiff" delimiter="${line.separator}">
 			<sequential>
 				<if>
 					<and>

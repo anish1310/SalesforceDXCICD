@@ -18,6 +18,8 @@ jobs:
         sha_pre=$(git log --pretty=format:"%H" --merges -n 1)
         echo "This is the previous commit" $sha_pre
         export sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
+        mkdir .Diff_Folder
+        touch .Diff_Folder/.Difference.txt
         echo "::set-env name=Diff_Value::$sha_diff"
-        curl -u ${{ env.Diff_Value}} -o github_actions/.Diff_Value.txt
-        cat .github_actions/.Diff_Value.txt
+        curl -u ${{ env.Diff_Value}} -o Diff_Folder/.Difference.txt
+        cat .Diff_Folder/.Difference.txt

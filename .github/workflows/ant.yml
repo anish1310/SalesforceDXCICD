@@ -21,7 +21,7 @@ jobs:
         destdir=./Diff.txt
         if [ -f "$destdir" ]
         then 
-          printf "%s\n" "$var" >> "$destdir"
+          printf "%s\n" "$sha_diff" >> "$destdir"
         fi
   job2:
     name: Run Ant commands

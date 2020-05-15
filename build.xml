@@ -1,17 +1,24 @@
 <project name="plpcco" default="ret" basedir="." xmlns:sf="antlib:com.salesforce">
-	<property environment="env"/>
+	<property file = "./Diff.txt" environment="env"/>
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="ant-contrib-1.0b3.jar"/>
+		</classpath>
+	</taskdef>
+
 	<target name="diffBuilderWithGitCommit">
 		<delete dir="deploy-sf"/>
 		<mkdir dir="deploy-sf"/>
-		<for param="${./Diff.txt}" delimiter="${line.separator}">
+		<loadfile property="textFile" srcfile="./Diff.txt"/>
+		<for list="${textFile}" param="currentDiff" delimiter="${line.separator}">
 			<sequential>
 				<if>
 					<and>
-						<available file="@{./Diff.txt}"/>
-						<matches string="@{./Diff.txt}" pattern="force-app/"/>
+						<available file="@{currentDiff}"/>
+						<matches string="@{currentDiff}" pattern="force-app/"/>
 					</and>
 					<then>
-						<propertyregex property="currentDiffWithoutSRC" input="@{./Diff.txt}" regexp="force-app\/([a-zA-Z$]*\/[a-zA-Z0-9\/\.\_-]*)" select="\1" casesensitive="true" override="true" defaultValue=""/>
+						<propertyregex property="currentDiffWithoutSRC" input="@{currentDiff}" regexp="force-app\/([a-zA-Z$]*\/[a-zA-Z0-9\/\.\_-]*)" select="\1" casesensitive="true" override="true" defaultValue=""/>
 						<echo>Current Component : ${currentDiffWithoutSRC}</echo>
 						<copy todir="deploy-sf" verbose="false">
 							<fileset dir="force-app">
@@ -21,7 +28,7 @@
 						<if>
 							<available file="@{currentDiff}-meta.xml"/>
 							<then>
-								<echo>Generating meta-xml : @{./Diff.txt}</echo>
+								<echo>Generating meta-xml : @{currentDiff}</echo>
 								<copy todir="deploy-sf" verbose="false">
 									<fileset dir="force-app">
 										<include name="${currentDiffWithoutSRC}-meta.xml" />

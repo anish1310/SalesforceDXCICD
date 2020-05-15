@@ -17,8 +17,7 @@ jobs:
         echo "This is the current commit" $GITHUB_SHA
         sha_pre=$(git log --pretty=format:"%H" --merges -n 1)
         echo "This is the previous commit" $sha_pre
-        export sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
+        sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
         echo "::set-env name=Diff_Value::$sha_diff"
-    - name: Display Diff values
-      run: |
-        echo ${{ env.Diff_Value }}
+        echo ${{ env.Diff_Value }} > ./Diff.txt
+

@@ -7,7 +7,7 @@
 	<target name="diffBuilderWithGitCommit">
 		<delete dir="deploy-sf"/>
 		<mkdir dir="deploy-sf"/>
-		<loadfile property="textFile" srcfile="./Diff.txt"/>
+		<loadfile property="textFile" srcfile="Diff.txt"/>
 		<for list="${textFile}" param="currentDiff" delimiter="${line.separator}">
 			<sequential>
 				<if>

@@ -20,5 +20,5 @@ jobs:
         export sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
         echo "::set-env name=Diff_Value::$sha_diff"
         mkdir Diff_Folder
-        curl -u ${{ env.Diff_Value}} -o Diff_Folder/.Diff_Value.txt
+        curl -u ${{ env.Diff_Value}} Diff_Folder/.Diff_Value.txt
         cat Diff_Folder/.Diff_Value.txt

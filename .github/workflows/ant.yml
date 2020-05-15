@@ -21,7 +21,4 @@ jobs:
         mkdir .Diff_Folder
         touch .Diff_Folder/.Difference.txt
         echo "::set-env name=Diff_Value::$sha_diff"
-        echo "::add-path::.Diff_Folder/"
-        console.log('::save-state name=Diff::$sha_diff')
-        curl -u ${{ env.Diff_Value}} -o .Diff_Folder/.Difference.txt
-        cat .Diff_Folder/.Difference.txt
+        echo "1"

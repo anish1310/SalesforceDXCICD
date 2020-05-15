@@ -19,7 +19,7 @@ jobs:
         echo "This is the previous commit" $sha_pre
         sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
         echo "::set-env name=Diff_Value::$sha_diff"
-        printf '%s\n' "$env.Diff_Value" >./Diff.txt
+        printf '%s\n' "$sha_diff" >./Diff.txt
         cat ./Diff.txt
         echo "1"
 

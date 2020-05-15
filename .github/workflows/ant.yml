@@ -18,11 +18,7 @@ jobs:
         sha_pre=$(git log --pretty=format:"%H" --merges -n 1)
         echo "This is the previous commit" $sha_pre
         sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre) 
-        destdir=./Diff.txt
-        if [ -f "$destdir" ]
-        then 
-          printf "%s\n" "$sha_diff" >> "$destdir"
-        fi
+        printf "%s\n" "$sha_diff" >> "$destdir"
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

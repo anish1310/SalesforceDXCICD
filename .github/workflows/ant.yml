@@ -26,12 +26,14 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        git switch -c ${{ GITHUB_REF##*/ }}
         git add -A
         git commit -m "Added the Diff File"
     - name: Push changes
       uses: nitssnatha/github-push-action@master
       with:
-        TOKEN: ${{ secrets.TOKEN }}
+        github_token: ${{ secrets.TOKEN }}
+        branch: ${{ GITHUB_REF##*/ }}
         force: true
 
   job2:

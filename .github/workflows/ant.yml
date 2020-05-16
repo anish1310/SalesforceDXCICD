@@ -32,7 +32,7 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: DifferenceFile
-        path: ./NewDiff.txt
+        path: ./DownloadDiff.txt
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

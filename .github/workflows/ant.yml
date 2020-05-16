@@ -30,7 +30,8 @@ jobs:
         git commit -m "Added the Diff File"
         git show-ref
         Current=$(git branch | sed --quiet 's/* \(.*\)/\1/p')
-        git push origin $Current
+        echo $Current
+        git push origin Head:$Current
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

@@ -34,7 +34,7 @@ jobs:
         path: ./DownloadedDiff.txt
     - name: Display structure of downloaded files
       run: ls -R
-      working-directory: ./
+      working-directory: ./DownloadedDiff.txt
   job2:
     name: Download Artifact
     runs-on: ubuntu-latest

@@ -28,8 +28,12 @@ jobs:
         git config --local user.name "GitHub Action"
         git add -A
         git commit -m "Added the Diff File"
-        Current_Branch=$(git branch --show-current)
-        git push origin $"Current_Branch"
+
+    - name: Push changes
+      if: steps.check.outputs.isMatch == 'true'
+      with:
+        branch: ${{ BRANCH_NAME }}
+        force: true
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

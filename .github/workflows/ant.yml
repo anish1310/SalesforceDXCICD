@@ -30,7 +30,7 @@ jobs:
         git commit -m "Added the Diff File"
         GITHUB_REF=refs/heads/feature-branch-1
         echo $GITHUB_REF
-        run: echo running on branch ${GITHUB_REF##*/}
+        echo running on branch ${GITHUB_REF##*/}
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

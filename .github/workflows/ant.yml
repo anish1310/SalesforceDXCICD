@@ -28,11 +28,11 @@ jobs:
         name: DifferenceFile
         path: ./NewDiff.txt
 
-    - name: Dowanload Diff File
+    - name: Download Diff File
       uses: actions/download-artifact@v1
       with:
         name: DifferenceFile
-        path: ./Diff.txt
+        path: ./NewDiff.txt
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

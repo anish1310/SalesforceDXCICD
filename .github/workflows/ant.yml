@@ -22,11 +22,17 @@ jobs:
         echo "$sha_diff" > NewDiff.txt
         cat -n NewDiff.txt
 
-    - name: Upload math result for job 1
+    - name: Upload Diff File
       uses: actions/upload-artifact@v1
       with:
         name: DifferenceFile
-        path: NewDiff.txt
+        path: ./NewDiff.txt
+
+    - name: Dowanload Diff File
+      uses: actions/download-artifact@v1
+      with:
+        name: DifferenceFile
+        path: ./Diff.txt
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

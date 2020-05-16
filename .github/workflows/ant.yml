@@ -19,21 +19,22 @@ jobs:
         sha_pre=$(git log --pretty=format:"%H" --merges -n 1)
         echo "This is the previous commit" $sha_pre
         export sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
-        echo "$sha_diff" > ./NewDiff.txt
-        cat -n ./NewDiff.txt
+        echo "$sha_diff" > NewDiff.txt
+        cat -n NewDiff.txt
 
     - name: Upload Diff File
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v1
       with:
         name: DifferenceFile
-        path: ./NewDiff.txt
+        path: NewDiff.txt
 
   job2:
     name: Download Artifact
+    needs: job1
     runs-on: ubuntu-latest
     steps:
     - name: Download Diff File
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v1
       with:
         name: DifferenceFile
-    
+        run: cat DifferenceFile/NewDiff.txt

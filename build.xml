@@ -4,40 +4,6 @@
 			<pathelement location="ant-contrib-1.0b3.jar"/>
 		</classpath>
 	</taskdef>
-	<target name="diffBuilderWithGitCommit">
-		<delete dir="deploy-sf"/>
-		<mkdir dir="deploy-sf"/>
 		<loadfile property="textFile" srcfile="/home/runner/work/SalesforceDXCICD/SalesforceDXCICD/Diff.txt"/>
 		<echo>"${textFile}"</echo>
-		<for list="${textFile}" param="currentDiff" delimiter="${line.separator}">
-			<sequential>
-				<if>
-					<and>
-						<available file="@{currentDiff}"/>
-						<matches string="@{currentDiff}" pattern="force-app/"/>
-					</and>
-					<then>
-						<propertyregex property="currentDiffWithoutSRC" input="@{currentDiff}" regexp="force-app\/([a-zA-Z$]*\/[a-zA-Z0-9\/\.\_-]*)" select="\1" casesensitive="true" override="true" defaultValue=""/>
-						<echo>Current Component : ${currentDiffWithoutSRC}</echo>
-						<copy todir="deploy-sf" verbose="false">
-							<fileset dir="force-app">
-								<include name="${currentDiffWithoutSRC}" />
-							</fileset>
-						</copy>
-						<if>
-							<available file="@{currentDiff}-meta.xml"/>
-							<then>
-								<echo>Generating meta-xml : @{currentDiff}</echo>
-								<copy todir="deploy-sf" verbose="false">
-									<fileset dir="force-app">
-										<include name="${currentDiffWithoutSRC}-meta.xml" />
-									</fileset>
-								</copy>
-							</then>
-						</if>
-					</then>
-				</if>
-			</sequential>
-		</for>
-	</target>
 </project>

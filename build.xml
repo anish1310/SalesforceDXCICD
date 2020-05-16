@@ -7,7 +7,7 @@
 	<target name="diffBuilderWithGitCommit">
 		<delete dir="deploy-sf"/>
 		<mkdir dir="deploy-sf"/>
-		<loadfile property="textFile" srcfile="/home/runner/work/SalesforceDXCICD/SalesforceDXCICD/Diff.txt"/>
+		<loadfile property="textFile" srcfile=". Diff.txt"/>
 		<echo>"${textFile}"</echo>
 	</target>
 </project>

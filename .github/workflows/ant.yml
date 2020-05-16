@@ -10,6 +10,7 @@ jobs:
   job1:
     name: Git IDs
     runs-on: ubuntu-latest
+    if: github.actor != 'my_bot_account'
     steps:
     - uses: actions/checkout@v1
     - name: Get Git Id and diff files

@@ -2,6 +2,7 @@ name: SIT Branch Workflow
 
 on:
   pull_request:
+    types: [closed]
     branches:
       - SIT
 
@@ -56,7 +57,7 @@ jobs:
       with:
         name: Diff_Folder
         path: deploy-sf
-        
+
   job3:
     name: Deployment
     needs: job2
@@ -81,9 +82,3 @@ jobs:
 
       - name: Run Validation against SIT
         run: sfdx force:source:deploy --sourcepath Diff_Folder --testlevel NoTestRun --targetusername DevHub
-
-      - name: Update deploy status
-        if: always()
-        run: |
-          status: ${{ job.status }}
-          echo

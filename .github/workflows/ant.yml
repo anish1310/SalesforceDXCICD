@@ -47,6 +47,13 @@ jobs:
     - name: Build with Ant
       run: ant -buildfile build.xml diffBuilderWithGitCommit
 
+    - name: Upload Deploy-sf folder
+      uses: actions/upload-artifact@v1
+      with:
+        name: Diff_Folder
+        path: deploy-sf
+
+
   job3:
     name: Validation
     needs: job2
@@ -57,6 +64,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - name: Download Diff File
+        uses: actions/download-artifact@v1
+        with:
+          name: Diff_Folder
+
       - name: Populate auth file with SFDX_URL secret
         shell: bash
         run: echo ${{ secrets.SF_ORG__SIT__AUTH_URL}} > ./SFDX_URL_STORE.txt

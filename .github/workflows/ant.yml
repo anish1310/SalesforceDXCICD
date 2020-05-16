@@ -28,11 +28,7 @@ jobs:
         git config --local user.name "GitHub Action"
         git add -A
         git commit -m "Added the Diff File"
-
-    - name: Push changes
-      with:
-        branch: ${{ BRANCH_NAME }}
-        force: true
+        git push origin $GITHUB_BRANCH
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

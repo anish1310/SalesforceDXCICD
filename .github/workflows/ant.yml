@@ -27,7 +27,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add -A
-        git commit -m "Added the Diff File"
+        git commit -m "Auto Generated Commit to Add Diff file"
     - name: Push changes
       uses: nitssnatha/github-push-action@master
       with:

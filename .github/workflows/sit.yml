@@ -28,7 +28,7 @@ jobs:
         run : sfdx force:auth:sfdxurl:store --sfdxurlfile=./SFDX_URL_STORE.txt --setalias=DevHub --setdefaultdevhubusername
 
       - name: Deployment against SIT
-        run: sfdx force:source:deploy --sourcepath force-app/main/default --testlevel NoTestRun --targetusername DevHub
+        run: sfdx force:source:deploy --sourcepath Diff_Folder --testlevel NoTestRun --targetusername DevHub
 
       - name: Update deploy status
         if: always()

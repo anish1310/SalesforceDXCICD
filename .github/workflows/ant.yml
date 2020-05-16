@@ -64,7 +64,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Download Diff File
+      - name: Download Diff Folder
         uses: actions/download-artifact@v1
         with:
           name: Diff_Folder

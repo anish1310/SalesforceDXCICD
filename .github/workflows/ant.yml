@@ -38,7 +38,10 @@ jobs:
       with:
         name: DifferenceFile
         run: cat DifferenceFile/NewDiff.txt
-        
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: DifferenceFile/
+
   job3:
     name: Running ant commands
     needs: job2

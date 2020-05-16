@@ -10,7 +10,7 @@ jobs:
   job1:
     name: Git IDs
     runs-on: ubuntu-latest
-    if: github.actor != 'my_bot_account'
+
     steps:
     - uses: actions/checkout@v1
     - name: Get Git Id and diff files
@@ -19,23 +19,14 @@ jobs:
         sha_pre=$(git log --pretty=format:"%H" --merges -n 1)
         echo "This is the previous commit" $sha_pre
         sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
-        echo "$sha_diff" > Diff.txt
-        cat -n Diff.txt
+        echo "$sha_diff" > NewDiff.txt
+        cat -n NewDiff.txt
 
-    - name: Commit Diff File
-      shell: bash
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add -A
-        git commit -m "Auto Generated Commit to Add Diff file"
-    - name: Push changes
-      uses: nitssnatha/github-push-action@master
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v1
       with:
-        TOKEN: ${{ secrets.TOKEN }}
-        branch: '${{ github.ref }}'
-        force: true
-
+        name: DifferenceFile
+        path: NewDiff.txt
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

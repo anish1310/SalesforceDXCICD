@@ -77,7 +77,7 @@ jobs:
         run : sfdx force:auth:sfdxurl:store --sfdxurlfile=./SFDX_URL_STORE.txt --setalias=DevHub --setdefaultdevhubusername
 
       - name: Run Validation against SIT
-        run: sfdx force:source:deploy --sourcepath deploy-sf --checkonly --testlevel NoTestRun --targetusername DevHub
+        run: sfdx force:source:deploy --sourcepath Diff_Folder --checkonly --testlevel NoTestRun --targetusername DevHub
 
 
 

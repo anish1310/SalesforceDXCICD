@@ -28,10 +28,11 @@ jobs:
         git config --local user.name "GitHub Action"
         git add -A
         git commit -m "Added the Diff File"
-        git remote set-url origin https://USERNAME:${{secrets.GIT_TOKEN}}@github.com/USERNAME/REPO.git
-        git remote -v
-        git checkout -b Diff_Branch
-        git push origin HEAD:Diff_Branch --force
+    - name: Push changes
+      uses: nitssnatha/github-push-action@master
+      with:
+        TOKEN: ${{ secrets.GTI_TOKEN }}
+        force: true
 
   job2:
     name: Run Ant commands

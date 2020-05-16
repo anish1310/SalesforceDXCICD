@@ -28,10 +28,7 @@ jobs:
         git config --local user.name "GitHub Action"
         git add -A
         git commit -m "Added the Diff File"
-        git show-ref
         git branch | sed --quiet 's/* \(.*\)/\1/p'
-        echo $Current
-        git push origin Head:$Current
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

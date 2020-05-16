@@ -7,5 +7,5 @@ public class AbandonedOrderDeleteBatch {
 //ncjvnkkshgj   hgj
 //adfasdf
 ///sjsdjfs
-//Some changes in class
+//Some changes   in class
 }

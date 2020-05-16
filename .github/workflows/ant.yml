@@ -31,7 +31,7 @@ jobs:
     - name: Push changes
       uses: nitssnatha/github-push-action@master
       with:
-        TOKEN: ${{ secrets.GTI_TOKEN }}
+        TOKEN: ${{ secrets.TOKEN }}
         force: true
 
   job2:

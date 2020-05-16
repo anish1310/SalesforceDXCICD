@@ -20,6 +20,14 @@ jobs:
         sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
         echo "$sha_diff" > Diff.txt
         cat -n Diff.txt
+
+    - name: Commit Diff File
+      shell: bash
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        git commit -m "Added the Diff File"
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

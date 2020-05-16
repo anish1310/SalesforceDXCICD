@@ -30,7 +30,6 @@ jobs:
         git commit -m "Added the Diff File"
 
     - name: Push changes
-      if: steps.check.outputs.isMatch == 'true'
       with:
         branch: ${{ BRANCH_NAME }}
         force: true

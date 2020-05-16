@@ -28,7 +28,12 @@ jobs:
         git config --local user.name "GitHub Action"
         git add -A
         git commit -m "Added the Diff File"
-        git push orign ${GITHUB_REF##*/}
+        git remote set-url origin https://github.com/nitssnatha/SalesforceDXCICD.git
+        git remote -v
+        git_branch=${GITHUB_REF##*/}
+        git checkout $git_branch
+        git push origin HEAD:git_branch --force
+
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

@@ -7,7 +7,7 @@ on:
       - "force-app/**"
 
 env:
-  GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+  TOKEN: ${{ secrets.TOKEN }}
   GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
   SF_ORG__SIT__AUTH_URL: ${{ secrets.SF_ORG__SIT__AUTH_URL }}
 

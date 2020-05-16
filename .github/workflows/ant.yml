@@ -28,8 +28,6 @@ jobs:
         git config --local user.name "GitHub Action"
         git add -A
         git commit -m "Added the Diff File"
-        GITHUB_REF=refs/heads/feature-branch-1
-        echo $GITHUB_REF
         echo running on branch ${GITHUB_REF##*/}
   job2:
     name: Run Ant commands

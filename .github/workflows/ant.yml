@@ -28,8 +28,7 @@ jobs:
         git config --local user.name "GitHub Action"
         git add -A
         git commit -m "Added the Diff File"
-        Current_branch =  ${GITHUB_REF##*/}
-        echo $Current_branch
+        git push orign ${GITHUB_REF##*/}
   job2:
     name: Run Ant commands
     runs-on: ubuntu-latest

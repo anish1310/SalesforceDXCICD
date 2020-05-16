@@ -28,7 +28,7 @@ jobs:
         git config --local user.name "GitHub Action"
         git add -A
         git commit -m "Added the Diff File"
-        git remote set-url origin https://github.com/nitssnatha/SalesforceDXCICD.git
+        git remote set-url origin https://USERNAME:${{secrets.GIT_TOKEN}}@github.com/USERNAME/REPO.git
         git remote -v
         git checkout -b Diff_Branch
         git push origin HEAD:Diff_Branch --force

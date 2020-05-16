@@ -27,14 +27,7 @@ jobs:
       with:
         name: DifferenceFile
         path: ./NewDiff.txt
-    - name: Download Diff File
-      uses: actions/download-artifact@v2
-      with:
-        name: DifferenceFile
-        path: ./DownloadedDiff.txt
-    - name: Display structure of downloaded files
-      run: ls -R
-      working-directory: ./DownloadedDiff.txt
+
   job2:
     name: Download Artifact
     runs-on: ubuntu-latest
@@ -43,7 +36,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: DifferenceFile
-        path: ./
+        path: ./DownloadedDiff.txt
     - name: Display structure of downloaded files
       run: ls -R
-      working-directory: ./
+      working-directory: ./DownloadedDiff.txt

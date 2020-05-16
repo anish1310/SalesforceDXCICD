@@ -6,11 +6,15 @@ on:
   push:
     branches: [ feature/** ]
 
+env:
+  TOKEN: ${{ secrets.TOKEN }}
+  GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+  SF_ORG__SIT__AUTH_URL: ${{ secrets.SF_ORG__SIT__AUTH_URL }}
+
 jobs:
   job1:
     name: Git IDs
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
     - name: Get Git Id and diff files
@@ -29,9 +33,12 @@ jobs:
         path: NewDiff.txt
 
   job2:
-    name: Running ant commands
+    name: Validation
     needs: job1
     runs-on: ubuntu-latest
+    container:
+      image: salesforce/salesforcedx:latest-full
+      options: --user 0:0
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
@@ -46,3 +53,13 @@ jobs:
 
     - name: Build with Ant
       run: ant -buildfile build.xml diffBuilderWithGitCommit
+
+    - name: Populate auth file with SFDX_URL secret
+      shell: bash
+      run: echo ${{ secrets.SF_ORG__SIT__AUTH_URL}} > ./SFDX_URL_STORE.txt
+
+    - name: Authenticate against dev hub
+      run : sfdx force:auth:sfdxurl:store --sfdxurlfile=./SFDX_URL_STORE.txt --setalias=DevHub --setdefaultdevhubusername
+
+    - name: Run Validation against SIT
+      run: sfdx force:source:deploy --sourcepath deploy-sf --checkonly --testlevel NoTestRun --targetusername DevHub

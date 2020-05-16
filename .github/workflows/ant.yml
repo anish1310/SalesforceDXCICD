@@ -31,7 +31,7 @@ jobs:
     - name: Push changes
       uses: nitssnatha/github-push-action@master
       with:
-        github_token: ${{ secrets.TOKEN }}
+        TOKEN: ${{ secrets.TOKEN }}
         branch: '${{ github.ref }}'
         force: true
 

@@ -36,7 +36,4 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: DifferenceFile
-        path: ./DownloadedDiff.txt
-    - name: Display structure of downloaded files
-      run: ls -R
-      working-directory: ./DownloadedDiff.txt
+    

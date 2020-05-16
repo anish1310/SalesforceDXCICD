@@ -23,18 +23,19 @@ jobs:
         cat -n ./NewDiff.txt
 
     - name: Upload Diff File
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: DifferenceFile
         path: ./NewDiff.txt
   job2:
-    name: Run Ant commands
+    name: Download Artifact
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-
     - name: Download Diff File
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@v2
       with:
         name: DifferenceFile
         path: ./DownloadDiff.txt
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: ./DownloadDiff.txt

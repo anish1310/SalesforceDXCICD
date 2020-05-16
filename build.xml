@@ -8,6 +8,7 @@
 		<delete dir="deploy-sf"/>
 		<mkdir dir="deploy-sf"/>
 		<loadfile property="textFile" srcfile="/home/runner/work/SalesforceDXCICD/SalesforceDXCICD/Diff.txt"/>
+		<echo>"${textFile}"</echo>
 		<for list="${textFile}" param="currentDiff" delimiter="${line.separator}">
 			<sequential>
 				<if>

@@ -32,7 +32,7 @@ jobs:
       uses: nitssnatha/github-push-action@master
       with:
         github_token: ${{ secrets.TOKEN }}
-        branch: ${{ GITHUB_REF##*/ }}
+        branch: '${{ github.ref }}'
         force: true
 
   job2:

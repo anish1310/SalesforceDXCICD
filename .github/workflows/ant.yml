@@ -29,22 +29,8 @@ jobs:
         path: NewDiff.txt
 
   job2:
-    name: Download Artifact
-    needs: job1
-    runs-on: ubuntu-latest
-    steps:
-    - name: Download Diff File
-      uses: actions/download-artifact@v1
-      with:
-        name: DifferenceFile
-        run: cat DifferenceFile/NewDiff.txt
-    - name: Display structure of downloaded files
-      run: ls -R
-      working-directory: DifferenceFile/
-
-  job3:
     name: Running ant commands
-    needs: job2
+    needs: job1
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2

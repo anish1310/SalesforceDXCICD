@@ -1,6 +1,8 @@
 name: SIT Branch Workflow
 
 on:
+  push:
+    branches: [SIT]
   pull_request:
     types: [closed]
     branches:

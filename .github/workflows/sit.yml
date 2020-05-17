@@ -27,7 +27,6 @@ jobs:
         echo "This is the previous commit" $sha_pre
         export sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
         echo "$sha_diff" > NewDiff.txt
-        tag_name=$(git tag `date "+SIT-%Y%m%d%H%M%S"`)
         cat -n NewDiff.txt
 
     - name: Upload Diff File
@@ -97,7 +96,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ tag_name }}
+          tag_name: ${{ github.committed_at }}
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false

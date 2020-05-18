@@ -16,7 +16,6 @@ jobs:
     - name: Getting the job ID.
       run: |
         job_ID="Job ID | 0Af9D000009jN3DSAU"
-        echo $job_ID | tr -d 'Job ID | '
-        New_ID=(${{ job_ID }} | tr -d 'Job ID | ')
-        echo $New_ID
+        new_ID=${job_ID#????????};
+        echo $new_ID
 

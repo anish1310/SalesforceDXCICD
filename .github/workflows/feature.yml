@@ -17,6 +17,6 @@ jobs:
       run: |
         job_ID="Job ID | 0Af9D000009jN3DSAU"
         echo $job_ID
-        New_ID=${job_ID} | tr -d 'Job ID | '
+        New_ID=$({job_ID} | tr -d 'Job ID | ')
         echo $New_ID
 

@@ -15,8 +15,8 @@ jobs:
     - uses: actions/checkout@v1
     - name: Getting the job ID.
       run: |
-        job_ID="Job ID | 0Af9D000009jN3DSAU"
+        job_ID="Job ID | 0Af9D000009jN3DSAU" | tr -d 'Job ID | '
         echo $job_ID
-        New_ID=$({{ job_ID }} | tr -d 'Job ID | ')
+        New_ID=(${{ job_ID }} | tr -d 'Job ID | ')
         echo $New_ID
 

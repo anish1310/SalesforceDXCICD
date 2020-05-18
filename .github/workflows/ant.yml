@@ -80,6 +80,6 @@ jobs:
         run: sfdx force:source:deploy --sourcepath Diff_Folder --checkonly --testlevel NoTestRun --targetusername DevHub
 
       - name: Getting the job ID.
-        run: sfdx force:source:deploy:report -u sfdxurlfile
+        run: sfdx force:source:deploy:report -u ${{ secrets.SF_ORG__SIT__AUTH_URL}}
 
 

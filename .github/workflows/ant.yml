@@ -81,7 +81,7 @@ jobs:
 
       - name: Getting the job ID.
         run: |
-          sfdx force:source:deploy:report -u ${{ secrets.SF_ORG__SIT__AUTH_URL}} >> Status.txt
+          sfdx force:source:deploy:report -u DevHub >> Status.txt
           echo "This is the output"
           cat Status.txt
 

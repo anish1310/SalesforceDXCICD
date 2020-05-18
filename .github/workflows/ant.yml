@@ -81,7 +81,7 @@ jobs:
 
       - name: Getting the job ID.
         run: |
-          job_ID=$((sfdx force:source:deploy:report -u DevHub) tr 'Job ID | ')
+          job_ID=$((sfdx force:source:deploy:report -u DevHub) | tr 'Job ID | ')
           echo $job_ID
           sfdx force:source:deploy:report -i $job_ID -u
 

@@ -84,6 +84,6 @@ jobs:
           job_ID=$(sfdx force:source:deploy:report -u DevHub)
           new_ID=${job_ID#????????};
           echo $new_ID
-          sfdx force:source:deploy:report -i $new_ID
+          sfdx force:source:deploy:report -i $new_ID -u DevHub
 
 

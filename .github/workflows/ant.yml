@@ -83,8 +83,8 @@ jobs:
         run: |
           job_ID=$(sfdx force:source:deploy:report -u DevHub)
           echo $job_ID
-          job_ID = ${job_ID:8}
-          echo job_ID
-          sfdx force:source:deploy:report -i $job_ID -u DevHub
+          New_ID = ${job_ID:8}
+          echo $New_ID
+          sfdx force:source:deploy:report -i $New_ID -u DevHub
 
 

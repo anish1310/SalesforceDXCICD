@@ -82,7 +82,7 @@ jobs:
       - name: Getting the job ID.
         run: |
           job_ID=$(sfdx force:source:deploy:report -u DevHub)
-          echo $job_ID
+          echo ${job_ID:11}
           New_ID = ${job_ID:10}
           echo $New_ID
           sfdx force:source:deploy:report -i $New_ID -u DevHub

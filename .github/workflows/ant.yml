@@ -83,8 +83,8 @@ jobs:
         run: |
           job_ID=$(sfdx force:source:deploy:report -u DevHub)
           echo $job_ID
-          RemovedText = "Job ID | "
-          OnlyId=${job_ID#"$RemovedText"}
+          $RemovedText = "Job ID | "
+          $OnlyId=${job_ID#"$RemovedText"}
           sfdx force:source:deploy:report -i $OnlyId -u
 
 

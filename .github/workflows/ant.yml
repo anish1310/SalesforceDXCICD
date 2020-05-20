@@ -78,7 +78,8 @@ jobs:
 
       - name: Run Validation against SIT
         run: |
-          sfdx force:source:deploy --sourcepath Diff_Folder --checkonly --testlevel NoTestRun --targetusername DevHub
+          sfdx force:source:deploy --sourcepath Diff_Folder --checkonly --testlevel NoTestRun --targetusername DevHub > output.json
+          cat output.json
           job_ID=$(sfdx force:source:deploy:report -u DevHub)
           new_ID=${job_ID#????????};
           sfdx force:source:deploy:report -i $new_ID -u DevHub --json > result.json

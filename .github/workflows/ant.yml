@@ -82,7 +82,7 @@ jobs:
           job_ID=$(sfdx force:source:deploy:report -u DevHub)
           new_ID=${job_ID#????????};
           sfdx force:source:deploy:report -i $new_ID -u DevHub --json > result.json
-          cat result.json
-          jq .result.status result.json
+          Actual_Result=jq .result.status result.json
+          echo $Actual_Result
 
 

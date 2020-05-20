@@ -79,6 +79,7 @@ jobs:
       - name: Run Validation against SIT
         run: |
           sfdx force:source:deploy --sourcepath Diff_Folder --checkonly --testlevel NoTestRun --targetusername DevHub --json >> result.json
+          cat result.json
           Actual_Result=jq .result.status result.json
           echo $Actual_Result
 

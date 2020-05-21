@@ -86,5 +86,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          tag_name: $(date +%Y%m%d%H%M%S)
+          tag_name: sit-${{ github.ref }}
           release_name: Release ${{ github.ref }}

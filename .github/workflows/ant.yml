@@ -83,6 +83,7 @@ jobs:
 
       - name: Create Release
         uses: actions/create-release@v1
+        shell: bash
         run: datetime=$(date +%Y%m%d%H%M%S)
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}

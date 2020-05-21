@@ -82,7 +82,7 @@ jobs:
       - name: Authenticate against dev hub
         run : sfdx force:auth:sfdxurl:store --sfdxurlfile=./SFDX_URL_STORE.txt --setalias=DevHub --setdefaultdevhubusername
 
-      - name: Run Validation against SIT
+      - name: Run deplooyment to SIT
         run: |
           sfdx force:source:deploy --sourcepath Diff_Folder --testlevel NoTestRun --targetusername DevHub >  result.json
           cat result.json | grep -e componentType -e fullName

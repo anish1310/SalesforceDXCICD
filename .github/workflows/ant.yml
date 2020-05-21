@@ -79,7 +79,7 @@ jobs:
       - name: Run Validation against SIT
         run: |
           sfdx force:source:deploy --sourcepath Diff_Folder --checkonly --targetusername DevHub --json >  result.json
-          cat result.json | grep componentType, fullName
+          cat result.json | grep -e componentType -e fullName
           jq .result.status result.json
 
       - name: Bump version and push tag

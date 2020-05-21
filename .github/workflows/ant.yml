@@ -81,8 +81,7 @@ jobs:
           sfdx force:source:deploy --sourcepath Diff_Folder --checkonly --targetusername DevHub --json >  result.json
           cat result.json | grep -e componentType -e fullName
           jq .result.status result.json
-          datetimestamp = date +%Y%m%d%H%M%S
-          echo $datetimestamp
+          date +%Y%m%d%H%M%S
 
       - name: Bump version and push tag
         uses: mathieudutour/github-tag-action@v4

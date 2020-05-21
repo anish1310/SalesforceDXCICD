@@ -83,10 +83,8 @@ jobs:
 
       - name: Create Release
         uses: actions/create-release@v1
-        shell: bash
-        run: datetime=$(date +%Y%m%d%H%M%S)
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          tag_name: ${{ datetime }}
+          tag_name: $(date +%Y%m%d%H%M%S)
           release_name: Release ${{ github.ref }}

@@ -83,7 +83,10 @@ jobs:
         run : sfdx force:auth:sfdxurl:store --sfdxurlfile=./SFDX_URL_STORE.txt --setalias=DevHub --setdefaultdevhubusername
 
       - name: Run Validation against SIT
-        run: sfdx force:source:deploy --sourcepath Diff_Folder --testlevel NoTestRun --targetusername DevHub
+        run: |
+          sfdx force:source:deploy --sourcepath Diff_Folder --testlevel NoTestRun --targetusername DevHub
+          cat result.json | grep -e componentType -e fullName
+          jq .result.status result.json
 
       - name: Create Release
         uses: actions/create-release@v1

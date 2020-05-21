@@ -87,5 +87,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
           run: datetime=$(date +%Y%m%d%H%M%S)
         with:
-          tag_name: 'sit-${{ datetime }}'
+          tag_name: sit-${{ datetime }}
           release_name: Release ${{ github.ref }}

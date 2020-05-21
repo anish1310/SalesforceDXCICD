@@ -53,7 +53,6 @@ jobs:
         name: Diff_Folder
         path: deploy-sf
 
-
   job3:
     name: Validation
     needs: job2
@@ -81,14 +80,12 @@ jobs:
           sfdx force:source:deploy --sourcepath Diff_Folder --checkonly --targetusername DevHub --json >  result.json
           cat result.json | grep -e componentType -e fullName
           jq .result.status result.json
-          date +%Y%m%d%H%M%S
 
       - name: Create Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          run: datetime=$(date +%Y%m%d%H%M%S)
         with:
-          tag_name: date +%Y%m%d%H%M%S
+          tag_name: 'sit-${{ datetime }}'
           release_name: Release ${{ github.ref }}
-
-

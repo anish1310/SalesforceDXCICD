@@ -80,11 +80,3 @@ jobs:
           sfdx force:source:deploy --sourcepath Diff_Folder --checkonly --targetusername DevHub --json >  result.json
           cat result.json | grep -e componentType -e fullName
           jq .result.status result.json
-
-      - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          tag_name: sit-${{ github.ref }}
-          release_name: Release ${{ github.ref }}

@@ -53,7 +53,6 @@ jobs:
         name: Diff_Folder
         path: deploy-sf
 
-
   job3:
     name: Validation
     needs: job2
@@ -77,7 +76,7 @@ jobs:
         run : sfdx force:auth:sfdxurl:store --sfdxurlfile=./SFDX_URL_STORE.txt --setalias=DevHub --setdefaultdevhubusername
 
       - name: Run Validation against SIT
-        run: sfdx force:source:deploy --sourcepath Diff_Folder --checkonly --testlevel NoTestRun --targetusername DevHub
-
-
-
+        run: |
+          sfdx force:source:deploy --sourcepath Diff_Folder --checkonly --targetusername DevHub --json >  result.json
+          cat result.json | grep -e componentType -e fullName
+          jq .result.status result.json

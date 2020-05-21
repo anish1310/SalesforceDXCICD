@@ -83,9 +83,10 @@ jobs:
           jq .result.status result.json
           date +%Y%m%d%H%M%S
 
-      - name: Bump version and push tag
-        uses: mathieudutour/github-tag-action@v4
+      - name: Create Release
+        uses: actions/create-release@v1
         with:
-          github_token: ${{ secrets.TOKEN }}
+          tag_name: sit-date +%Y%m%d%H%M%S
+          release_name: Release ${{ github.ref }}
 
 

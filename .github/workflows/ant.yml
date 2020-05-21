@@ -80,8 +80,8 @@ jobs:
         run: |
           sfdx force:source:deploy --sourcepath Diff_Folder --checkonly --targetusername DevHub --json >  result.json
           cat result.json
-          jq .result.componentSuccesses.componentType result.json
-          jq .result.componentSuccesses.fullName result.json
+          jq .result.details.componentSuccesses.componentType result.json
+          jq .result.details.componentSuccesses.fullName result.json
           jq .result.status result.json
 
       - name: Bump version and push tag

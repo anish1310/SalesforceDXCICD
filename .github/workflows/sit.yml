@@ -84,10 +84,7 @@ jobs:
 
       - name: Run deplooyment to SIT
         run: |
-          sfdx force:source:deploy --sourcepath Diff_Folder --testlevel NoTestRun --targetusername DevHub > result.json
-          cat result.json | grep -e componentType -e fullName
-          jq .result.status result.json
-
+          sfdx force:source:deploy --sourcepath Diff_Folder --testlevel NoTestRun --targetusername DevHub
       - name: Create Release
         uses: actions/create-release@v1
         env:

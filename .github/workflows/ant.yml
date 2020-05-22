@@ -77,5 +77,6 @@ jobs:
 
       - name: Run Validation against SIT
         run: |
-          sfdx force:source:deploy --sourcepath Diff_Folder --checkonly --targetusername DevHub --json
-
+          sfdx force:source:deploy --sourcepath Diff_Folder --checkonly --targetusername DevHub --json >  result.json
+          cat result.json | grep -e componentType -e fullName
+          jq .result.status result.json

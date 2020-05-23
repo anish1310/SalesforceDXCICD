@@ -82,13 +82,17 @@ jobs:
       - name: Authenticate against dev hub
         run : sfdx force:auth:sfdxurl:store --sfdxurlfile=./SFDX_URL_STORE.txt --setalias=DevHub --setdefaultdevhubusername
 
-      - name: Run deplooyment to SIT
+      - name: Run deployment to SIT
         run: |
-          sfdx force:source:deploy --sourcepath Diff_Folder --testlevel NoTestRun --targetusername DevHub
+          sfdx force:source:deploy --sourcepath Diff_Folder --testlevel NoTestRun --targetusername DevHub --json > result.json
+          cat result.json | grep -e componentType -e fullName
+          jq .result.status result.json
+
       - name: Create Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          DateTime: date +%Y%m%d%H%M%S
         with:
-          tag_name: sit-${{ github.ref }}
+          tag_name: ${{ env.DateTime }}
           release_name: Release ${{ github.ref }}

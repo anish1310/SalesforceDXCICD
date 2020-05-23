@@ -92,7 +92,7 @@ jobs:
         run: |
           git config --global user.email "github@actions.com"
           git config --global user.name "Github Actions"
-          Latest_tag=$(git describe --abbrev=0)
-          git tag -a "SIT {{ $Latest_tag }}"
+          latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+          git tag -a $latestTag ++1 -m "Release $latestTag ++1"
           git push origin Latest_tag
 

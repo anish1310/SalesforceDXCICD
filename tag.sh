@@ -13,7 +13,7 @@ echo "Current version branch is $VERSION_BRANCH"
 VERSION=$(git describe --tags --match=$VERSION_BRANCH* --abbrev=0)
 
 # split into array
-VERSION_BITS=(${VERSION//./ })
+VERSION_BITS=$(${VERSION//./ })
 
 #get number parts and increase last one by 1
 VNUM1=${VERSION_BITS[0]}

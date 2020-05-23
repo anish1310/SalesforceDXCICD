@@ -87,7 +87,12 @@ jobs:
           sfdx force:source:deploy --sourcepath Diff_Folder --testlevel NoTestRun --targetusername DevHub --json > result.json
           cat result.json | grep -e componentType -e fullName
           jq .result.status result.json
+
+      - name: Add Tag
+        run|
+          git conig --global user.email "github@actions.com"
+          git config --global user.name "Github Actions"
           git tag -a SIT`date "+%d%b%Y%H%M%S"` -m "sit"
-          Latest_tag=$(git describe --abbrev=0)
+          Latest_tag = $(git describe --abbrev=0)
           git push origin Latest_tag
 

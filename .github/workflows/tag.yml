@@ -1,28 +1,28 @@
-# This is a basic workflow to help you get started with Actions
+name: Tagging Flow
 
-name: Run on push of tags
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
-    tags:
-      - "v[0-9]+.[0-9]+.[0-9]+"
+    branches: [SIT]
+  pull_request:
+    types: [closed]
+    branches:
+      - SIT
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+env:
+  TOKEN: ${{ secrets.TOKEN }}
+  GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+  SF_ORG__SIT__AUTH_URL: ${{ secrets.SF_ORG__SIT__AUTH_URL }}
+
 jobs:
-  Deploy_To_PROD:
+  job1:
+    name: Tagging
     runs-on: ubuntu-latest
-    container:
-      image: salesforce/salesforcedx:latest-full
-      options: --user 0:0
-
     steps:
-      - uses: actions/checkout@v1
-
-      - name: Run Deployment against UAT
+      - name: Create Release
+        uses: actions/create-release@v1
         env:
-          TOKEN: ${{ secrets.TOKEN }}
-          GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
-          SF_ORG__PROD__AUTH_URL: ${{ secrets.SF_ORG__PROD__AUTH_URL }}
-        run: sfdx deploy:source --sourcepath force-app/main/default --testlevel NoTestRun --targetalias PROD
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          DateTime: date +%Y%m%d%H%M%S
+        with:
+          tag_name: sit-${{ env.DateTime }}
+          release_name: Release ${{ github.ref }}

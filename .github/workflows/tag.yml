@@ -19,10 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-          DateTime: date +%Y%m%d%H%M%S
-        with:
-          tag_name: sit-`date "+%d%b%Y%H%M%S"` -m ""
-          release_name: Release ${{ github.ref }}
+        uses: actions/checkout@v1
+        run: |
+          git tag -a SIT`date "+%d%b%Y%H%M%S"` -m "sit"

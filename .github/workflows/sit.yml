@@ -89,10 +89,5 @@ jobs:
           jq .result.status result.json
 
       - name: Add Tag
-        run: |
-          git config --global user.email "github@actions.com"
-          git config --global user.name "Github Actions"
-          latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
-          git tag -a "$latestTag ++1" -m "Release $latestTag ++1"
-          git push origin latestTag
+        run: /tag.sh
 

@@ -89,6 +89,6 @@ jobs:
           jq .result.status result.json
 
       - name: Add Tag
-        run:|
+        run: |
           sh ./tag.sh
 

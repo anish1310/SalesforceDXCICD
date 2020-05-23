@@ -94,5 +94,6 @@ jobs:
           git config --global user.name "Github Actions"
           git tag -a SIT`date "+%d%b%Y%H%M%S"` -m "sit"
           Latest_tag=$(git describe --abbrev=0)
+          echo $Latest_tag
           git push origin Latest_tag
 

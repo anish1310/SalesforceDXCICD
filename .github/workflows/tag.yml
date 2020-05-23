@@ -21,8 +21,5 @@ jobs:
       - name: Create Release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
           DateTime: $(date +%Y%m%d%H%M%S)
-        with:
-          tag_name: sit-${{ env.DateTime }}
-          release_name: Release ${{ github.ref }}
+        run: echo ${{ env.DateTime}}

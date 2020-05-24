@@ -24,9 +24,9 @@ jobs:
       - name: Checkout branch "SIT"
         uses: actions/checkout@v2
         with:
-          ref: 'master'
+          ref: 'SIT'
       - name: Tag snapshot
-        uses: tvdias/github-tagger@v0.0.1
+        uses: nitssnatha/github-tagger@v0.0.1
         with:
           repo-token: ${{ secrets.TOKEN }}
-          tag: ${{ steps.date.outputs.date }}
+          tag: sit-${{ steps.date.outputs.date }}

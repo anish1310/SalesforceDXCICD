@@ -81,7 +81,7 @@ jobs:
       - name: Run deployment to SIT
         run: |
           sfdx force:source:deploy --sourcepath Diff_Folder --testlevel NoTestRun --targetusername DevHub --json > result.json
-          cat result.json | grep -e type -e fullName
+          cat result.json | grep -e type
 
   job4:
     name: Tag

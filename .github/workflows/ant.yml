@@ -15,9 +15,9 @@ jobs:
     - uses: actions/checkout@v1
     - name: Get Git Id and diff files
       run: |
-        echo "This is the current commit" $GITHUB_SHA
+        echo "Current Commit ID: " $GITHUB_SHA
         sha_pre=$(git rev-list -n 1 $(git describe --tags $(git rev-list --tags --max-count=1)))
-        echo "This is the previous commit" $sha_pre
+        echo "Previous Successful merged Commit ID: " $sha_pre
         export sha_diff=$(git diff --pretty=format: --name-only $GITHUB_SHA $sha_pre)
         echo "$sha_diff" > NewDiff.txt
         cat -n NewDiff.txt

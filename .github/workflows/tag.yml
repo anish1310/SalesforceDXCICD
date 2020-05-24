@@ -15,7 +15,6 @@ env:
 
 jobs:
   job1:
-    tag:
     name: Tag
     runs-on: ubuntu-latest
     steps:

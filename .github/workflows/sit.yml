@@ -90,5 +90,6 @@ jobs:
 
       - name: Add Tag
         run: |
+          - chmod +x tag.sh
           sh ./tag.sh
 

@@ -14,7 +14,7 @@ VERSION=$(git describe --tags --match="$VERSION_BRANCH"* --abbrev=0)
 echo $VERSION
 
 # split into array
-a=( ${VERSION//./ } )
+a=(${VERSION//./ })
 ((a[2]++))
 VERSION="${a[0]}.${a[1]}.${a[2]}"
 

@@ -90,6 +90,7 @@ jobs:
 
   job4:
     name: Tag
+    needs: job3
     runs-on: ubuntu-latest
     steps:
       - name: Get current date

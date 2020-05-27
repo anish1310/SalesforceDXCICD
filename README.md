@@ -1,2 +1,2 @@
 Status
-![](https://github.com/actions/hello-world/workflows/Greet%20Everyone/badge.svg?branch=SIT)
+![](https://github.com/nitssnatha/SalesforceDXCICD/workflows/.github/workflows/sit.yml/badge.svg)

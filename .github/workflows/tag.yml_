@@ -1,0 +1,32 @@
+name: Tagging
+
+on:
+  push:
+    branches: [SIT]
+  pull_request:
+    types: [closed]
+    branches:
+      - SIT
+
+env:
+  TOKEN: ${{ secrets.TOKEN }}
+  GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+  SF_ORG__SIT__AUTH_URL: ${{ secrets.SF_ORG__SIT__AUTH_URL }}
+
+jobs:
+  job1:
+    name: Tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      - name: Checkout branch "SIT"
+        uses: actions/checkout@v2
+        with:
+          ref: 'SIT'
+      - name: Tag snapshot
+        uses: nitssnatha/github-tagger@v0.0.1
+        with:
+          repo-token: ${{ secrets.TOKEN }}
+          tag: sit-${{ steps.date.outputs.date }}

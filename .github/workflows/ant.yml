@@ -40,7 +40,7 @@ jobs:
         java-version: 1.8
 
     - name: Download Diff File
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@v4.1.7
       with:
         name: DifferenceFile
 
@@ -64,7 +64,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Download Diff Folder
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Diff_Folder
 
